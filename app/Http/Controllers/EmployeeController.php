@@ -52,8 +52,8 @@ class EmployeeController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'email' => 'required|email',
-            'contact' => 'required|string|max:10',
+            'email' => 'required|email|unique:employees,email',
+            'contact' => 'required|string|max:10|unique:employees,contact',
             'designation' => 'required|string',
             'city' => 'string'
         ]);

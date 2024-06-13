@@ -17,8 +17,8 @@ class EmployeeImport implements ToCollection
         foreach ($rows as $row)
         {
             if ($i != 0 && !empty($row[0])) {
-                $employee = Employee::where('email', $row[1])->first(['id', 'email']);
-                if (empty($employee)) {
+                $employeeCount = Employee::where('email', $row[1])->orWhere('contact', $row[2])->count();
+                if ($employeeCount == 0) {
                     Employee::create([
                         'name' => $row[0],
                         'email' => $row[1],
